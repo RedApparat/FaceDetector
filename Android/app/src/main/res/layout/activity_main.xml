@@ -6,19 +6,17 @@
     android:layout_height="match_parent"
     tools:activity="io.fotoapparat.sample.MainActivity">
 
-    <io.fotoapparat.view.CameraView
-        android:id="@+id/camera_view"
+    <io.fotoapparat.facedetector.view.CameraOverlayLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:visibility="gone"
-        tools:layout_editor_absoluteX="8dp"
-        tools:layout_editor_absoluteY="8dp"
-        tools:visibility="visible"/>
+        android:layout_height="match_parent">
 
-    <ImageView
-        android:id="@+id/result"
-        android:layout_width="200dp"
-        android:layout_height="200dp"/>
+        <io.fotoapparat.view.CameraView
+            android:id="@+id/camera_view"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:visibility="gone"
+            tools:visibility="visible"/>
+    </io.fotoapparat.facedetector.view.CameraOverlayLayout>
 
     <TextView
         android:id="@+id/no_permission"
