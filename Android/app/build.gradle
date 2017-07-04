@@ -25,7 +25,7 @@ android {
 
 dependencies {
     compile project(':facedetector')
-    compile 'io.fotoapparat.fotoapparat:library:1.0.3'
+    compile 'io.fotoapparat.fotoapparat:library:1.0.4'
 
     compile 'com.android.support:appcompat-v7:25.3.1'
     compile 'com.android.support.constraint:constraint-layout:1.0.0-beta4'

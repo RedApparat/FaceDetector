@@ -49,5 +49,5 @@ android {
 }
 
 dependencies {
-    provided 'io.fotoapparat.fotoapparat:library:1.0.3'
+    provided 'io.fotoapparat.fotoapparat:library:1.0.4'
 }
