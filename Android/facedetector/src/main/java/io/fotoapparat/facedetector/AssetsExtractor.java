@@ -2,7 +2,6 @@ package io.fotoapparat.facedetector;
 
 import android.content.Context;
 
-import java.io.BufferedOutputStream;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
@@ -49,12 +48,12 @@ class AssetsExtractor {
     private void extractFile(File extractedFile) throws IOException {
         InputStream assetsStream = context.getAssets().open(assetFileName);
 
-        BufferedOutputStream outputStream = new BufferedOutputStream(new FileOutputStream(extractedFile));
+        FileOutputStream outputStream = new FileOutputStream(extractedFile);
 
         try {
-            byte[] buffer = new byte[256];
-            while (assetsStream.read(buffer) > 0) {
-                outputStream.write(buffer);
+            final byte[] buffer = new byte[8192];
+            for (int r; (r = assetsStream.read(buffer)) != -1; ) {
+                outputStream.write(buffer, 0, r);
             }
         } finally {
             outputStream.flush();

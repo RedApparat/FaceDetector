@@ -1,5 +1,9 @@
 apply plugin: 'com.android.application'
 
+repositories {
+    maven { url 'https://jitpack.io' }
+}
+
 android {
     compileSdkVersion 25
     buildToolsVersion "25.0.2"
@@ -21,6 +25,7 @@ android {
 
 dependencies {
     compile project(':facedetector')
+    compile 'io.fotoapparat.fotoapparat:library:1.0.3'
 
     compile 'com.android.support:appcompat-v7:25.3.1'
     compile 'com.android.support.constraint:constraint-layout:1.0.0-beta4'
