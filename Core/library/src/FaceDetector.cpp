@@ -9,13 +9,13 @@ using namespace fotoapparat;
 using namespace std;
 using namespace cv;
 
-vector<Rect> FaceDetector::detectFaces(const Mat &image) {
+vector<Rect2f> FaceDetector::detectFaces(const Mat &image) {
     ensureLoaded();
 
-    return detectOnDownscaledImage(image, 1280, [&](const Mat &downscaled) {
-        vector<Rect> result;
-        classifier.detectMultiScale(downscaled, result, 1.3, 5);
+    auto resizedImage = resizeImage(image, 1280);
 
-        return result;
-    });
+    vector<Rect> faces;
+    classifier.detectMultiScale(resizedImage, faces, 1.3, 5);
+
+    return toNormalizedCoordinates(Size(resizedImage.cols, resizedImage.rows), faces);
 }

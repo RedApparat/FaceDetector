@@ -11,6 +11,7 @@
 using cv::Mat;
 using cv::Size;
 using cv::Rect;
+using cv::Rect2f;
 using std::vector;
 using std::function;
 
@@ -23,7 +24,7 @@ namespace fotoapparat {
      * @param maxSide max desired side in pixels.
      * @return resized copy of an original image.
      */
-    Mat resizeImage(Mat source, uint maxSide) {
+    Mat resizeImage(const Mat &source, uint maxSide) {
         float scaleFactor = maxSide / (float) std::max(source.cols, source.rows);
 
         Size targetSize(
@@ -38,28 +39,22 @@ namespace fotoapparat {
     }
 
     /**
-     * Runs detection function on a downscaled image and returns result in coordinate space of original image.
+     * Converts rectangles to normalized coordinates, where (0,0) depicts top left corner and (1,1) bottom right corner.
      *
-     * @param image original image.
-     * @param maxSide max side to which image will be downscaled.
-     * @param detect detection function.
-     * @return result of detection in coordinate space of original image.
+     * @param sizeOfEnclosingSpace size of the space in which rectangles are contained. Usually size of the image.
+     * @param rectangles rectangles to map.
+     * @return vector of rectangles in normalized coordinates.
      */
-    vector<Rect> detectOnDownscaledImage(const Mat &image, uint maxSide, function<vector<Rect>(const Mat &)> detect) {
-        auto resizedImage = resizeImage(image, maxSide);
+    vector<Rect2f> toNormalizedCoordinates(const Size &sizeOfEnclosingSpace,
+                                           const vector<Rect> &rectangles) {
+        vector<Rect2f> result(rectangles.size());
 
-        const float scaleFactor = image.cols / (float) resizedImage.cols;
-
-        auto downscaledRectangles = detect(resizedImage);
-
-        vector<Rect> result(downscaledRectangles.size());
-
-        for (auto rect : downscaledRectangles) {
-            result.push_back(Rect(
-                    (int) (rect.x * scaleFactor),
-                    (int) (rect.y * scaleFactor),
-                    (int) (rect.width * scaleFactor),
-                    (int) (rect.height * scaleFactor)
+        for (auto rectangle : rectangles) {
+            result.push_back(Rect2f(
+                    rectangle.x / (float) sizeOfEnclosingSpace.width,
+                    rectangle.y / (float) sizeOfEnclosingSpace.height,
+                    rectangle.width / (float) sizeOfEnclosingSpace.width,
+                    rectangle.height / (float) sizeOfEnclosingSpace.height
             ));
         }
 

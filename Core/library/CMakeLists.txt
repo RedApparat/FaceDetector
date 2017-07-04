@@ -6,7 +6,8 @@ set(CMAKE_CXX_STANDARD 11)
 find_package(OpenCV REQUIRED)
 
 set(SOURCE_FILES
-        src/FaceDetector.cpp src/FaceDetector.h)
+        src/FaceDetector.cpp src/FaceDetector.h
+        src/util/cv.h)
 
 add_library(faceDetector ${SOURCE_FILES})
 target_include_directories(faceDetector PUBLIC src)

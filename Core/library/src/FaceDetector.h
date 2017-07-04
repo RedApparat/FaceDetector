@@ -16,7 +16,7 @@ namespace fotoapparat {
         FaceDetector(std::string classifierPath) : classifierPath(classifierPath), classifier() {
         }
 
-        std::vector<cv::Rect> detectFaces(const cv::Mat &image);
+        std::vector<cv::Rect2f> detectFaces(const cv::Mat &image);
 
     private:
 
