@@ -65,7 +65,7 @@ class AssetsExtractor {
     }
 
     private File extractedFile() {
-        File directory = context.getExternalFilesDir(assetFileName);
+        File directory = context.getExternalFilesDir(null);
 
         ensureValidDirectory(directory);
 

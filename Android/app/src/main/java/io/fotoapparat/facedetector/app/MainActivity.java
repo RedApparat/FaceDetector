@@ -12,7 +12,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        FaceDetector faceDetector = new FaceDetector();
+        FaceDetector faceDetector = new FaceDetector(assetsExtractor);
     }
 
 }
