@@ -24,6 +24,22 @@ vector<Rectangle> toRectangles(vector<cv::Rect2f> input) {
     return result;
 }
 
+void rotateImage(cv::Mat &image, int32_t rotationDegrees) {
+    switch (rotationDegrees) {
+        case 90:
+            cv::rotate(image, image, cv::ROTATE_90_COUNTERCLOCKWISE);
+            break;
+        case 180:
+            cv::rotate(image, image, cv::ROTATE_180);
+            break;
+        case 270:
+            cv::rotate(image, image, cv::ROTATE_90_CLOCKWISE);
+            break;
+        default:
+            break;
+    }
+}
+
 class FaceDetectorImpl : public FaceDetectorWrapper {
 public:
 
@@ -32,9 +48,12 @@ public:
 
     virtual vector<Rectangle> detectFaces(const std::vector<uint8_t> &image,
                                           int32_t frameWidth,
-                                          int32_t frameHeight) override {
+                                          int32_t frameHeight,
+                                          int32_t rotationDegrees) override {
         cv::Mat nv21(frameHeight + frameHeight / 2, frameWidth, CV_8UC1, (uchar *) image.data());
         cv::cvtColor(nv21, nv21, CV_YUV2RGBA_NV21);
+
+        rotateImage(nv21, rotationDegrees);
 
         auto faces = faceDetector.detectFaces(nv21);
 

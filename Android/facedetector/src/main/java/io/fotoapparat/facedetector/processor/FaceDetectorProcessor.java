@@ -34,7 +34,12 @@ public class FaceDetectorProcessor implements FrameProcessor {
 
     @Override
     public void processFrame(Frame frame) {
-        final List<Rectangle> faces = faceDetector.detectFaces(frame.image, frame.size.width, frame.size.height);
+        final List<Rectangle> faces = faceDetector.detectFaces(
+                frame.image,
+                frame.size.width,
+                frame.size.height,
+                frame.rotation
+        );
 
         MAIN_THREAD_HANDLER.post(new Runnable() {
             @Override

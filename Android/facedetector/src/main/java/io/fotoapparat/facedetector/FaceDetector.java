@@ -39,10 +39,10 @@ public class FaceDetector {
      * @param frameHeight height of the image in pixels.
      * @return list of detected faces in normalized coordinates.
      */
-    public List<Rectangle> detectFaces(byte[] nv21Image, int frameWidth, int frameHeight) {
+    public List<Rectangle> detectFaces(byte[] nv21Image, int frameWidth, int frameHeight, int frameRotationDegrees) {
         ensureInitialized();
 
-        return faceDetectorWrapper.detectFaces(nv21Image, frameWidth, frameHeight);
+        return faceDetectorWrapper.detectFaces(nv21Image, frameWidth, frameHeight, frameRotationDegrees);
     }
 
     private void ensureInitialized() {

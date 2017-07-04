@@ -22,6 +22,6 @@ FaceDetectorWrapper = interface +c {
     static create(classifierPath: string): FaceDetectorWrapper;
 
     # Detects faces on a given NV21 image
-    detectFaces(image: binary, frameWidth: i32, frameHeight: i32): list<Rectangle>;
+    detectFaces(image: binary, frameWidth: i32, frameHeight: i32, rotationDegrees: i32): list<Rectangle>;
 
 }
