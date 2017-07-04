@@ -1,5 +1,9 @@
 apply plugin: 'com.android.library'
 
+repositories {
+    maven { url 'https://jitpack.io' }
+}
+
 android {
     compileSdkVersion 25
     buildToolsVersion "25.0.2"
@@ -45,4 +49,5 @@ android {
 }
 
 dependencies {
+    provided 'io.fotoapparat.fotoapparat:library:1.0.3'
 }
