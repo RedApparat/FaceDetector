@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <declare-styleable name="RectanglesView">
+        <attr name="rectanglesColor" format="color"/>
+        <attr name="rectanglesStrokeWidth" format="dimension"/>
+    </declare-styleable>
+
+</resources>

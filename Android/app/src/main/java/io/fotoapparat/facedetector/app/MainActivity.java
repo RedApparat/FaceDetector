@@ -12,6 +12,7 @@ import io.fotoapparat.Fotoapparat;
 import io.fotoapparat.FotoapparatSwitcher;
 import io.fotoapparat.facedetector.Rectangle;
 import io.fotoapparat.facedetector.processor.FaceDetectorProcessor;
+import io.fotoapparat.facedetector.view.RectanglesView;
 import io.fotoapparat.parameter.LensPosition;
 import io.fotoapparat.view.CameraView;
 
@@ -25,6 +26,7 @@ public class MainActivity extends AppCompatActivity {
     private final PermissionsDelegate permissionsDelegate = new PermissionsDelegate(this);
     private boolean hasCameraPermission;
     private CameraView cameraView;
+    private RectanglesView rectanglesView;
 
     private FotoapparatSwitcher fotoapparatSwitcher;
     private Fotoapparat frontFotoapparat;
@@ -36,6 +38,7 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         cameraView = (CameraView) findViewById(R.id.camera_view);
+        rectanglesView = (RectanglesView) findViewById(R.id.rectanglesView);
         hasCameraPermission = permissionsDelegate.hasCameraPermission();
 
         if (hasCameraPermission) {
@@ -77,6 +80,8 @@ public class MainActivity extends AppCompatActivity {
                                     @Override
                                     public void onFacesDetected(List<Rectangle> faces) {
                                         Log.d("&&&", "Detected faces: " + faces.size());
+
+                                        rectanglesView.setRectangles(faces);
                                     }
                                 })
                                 .build()
