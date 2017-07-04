@@ -13,7 +13,6 @@ using cv::Size;
 using cv::Rect;
 using cv::Rect2f;
 using std::vector;
-using std::function;
 
 namespace fotoapparat {
 

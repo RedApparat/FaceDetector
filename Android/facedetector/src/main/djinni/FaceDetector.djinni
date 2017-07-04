@@ -1,0 +1,27 @@
+# Rectangle. Coordinates are in arbitrary units.
+Rectangle = record {
+
+    # X coordinate of the top left corner.
+    x: f32;
+
+    # Y coordinate of the top left corner.
+    y: f32;
+
+    # Width of the rectangle.
+    width: f32;
+
+    # Height of the rectangle.
+    height: f32;
+
+}
+
+# Wrapper around native FaceDetector library
+FaceDetectorWrapper = interface +c {
+
+    # Creates new instance of wrapper
+    static create(classifierPath: string): FaceDetectorWrapper;
+
+    # Detects faces on a given NV21 image
+    detectFaces(image: binary, frameWidth: i32, frameHeight: i32): list<Rectangle>;
+
+}
