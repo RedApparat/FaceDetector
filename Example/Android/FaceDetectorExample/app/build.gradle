@@ -1,0 +1,31 @@
+apply plugin: 'com.android.application'
+
+repositories {
+    maven { url  "http://dl.bintray.com/fotoapparat/fotoapparat" }
+    maven { url 'https://jitpack.io' }
+}
+
+android {
+    compileSdkVersion 25
+    buildToolsVersion "25.0.2"
+    defaultConfig {
+        applicationId "io.fotoapparat.facedetector.example"
+        minSdkVersion 15
+        targetSdkVersion 25
+        versionCode 1
+        versionName "1.0"
+    }
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+}
+
+dependencies {
+    compile 'com.android.support:appcompat-v7:25.3.1'
+
+    compile 'io.fotoapparat:facedetector:1.0.0'
+    compile 'io.fotoapparat.fotoapparat:library:1.0.4'
+}
