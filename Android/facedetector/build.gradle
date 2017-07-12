@@ -1,7 +1,42 @@
 apply plugin: 'com.android.library'
 
+buildscript {
+    repositories {
+        jcenter()
+    }
+    dependencies {
+        classpath 'com.jfrog.bintray.gradle:gradle-bintray-plugin:1.7.3'
+        classpath 'com.github.dcendents:android-maven-gradle-plugin:1.5'
+    }
+}
+
 repositories {
     maven { url 'https://jitpack.io' }
+}
+
+ext {
+    bintrayOrganisation = 'fotoapparat'
+    bintrayRepo = 'fotoapparat'
+    bintrayName = 'facedetector'
+
+    publishedGroupId = 'io.fotoapparat'
+    libraryName = 'FaceDetector'
+    artifact = 'facedetector'
+
+    libraryDescription = 'Face detection library which works with Fotoapparat'
+
+    siteUrl = 'https://github.com/Fotoapparat/FaceDetector'
+    gitUrl = 'https://github.com/Fotoapparat/FaceDetector.git'
+
+    libraryVersion = '1.0.0-rc1'
+
+    developerId = 'fotoapparat'
+    developerName = 'Fotoapparat'
+    developerEmail = 'dmitry.zaicew@gmail.com'
+
+    licenseName = 'The Apache Software License, Version 2.0'
+    licenseUrl = 'http://www.apache.org/licenses/LICENSE-2.0.txt'
+    allLicenses = ["Apache-2.0"]
 }
 
 android {
@@ -51,3 +86,10 @@ android {
 dependencies {
     provided 'io.fotoapparat.fotoapparat:library:1.0.4'
 }
+
+task generateDjinni(type: Exec) {
+    commandLine 'sh', 'generateDjinni.sh', "$DJINNI_HOME/src/run"
+}
+
+apply from: 'https://raw.githubusercontent.com/nuuneoi/JCenter/master/installv1.gradle'
+apply from: 'deploy.gradle'
