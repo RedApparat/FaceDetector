@@ -1,9 +1,9 @@
 cmake_minimum_required(VERSION 3.4.1)
 
 # OpenCV
-include_directories(${OPENCV_HOME}/sdk/native/jni/include)
-add_library( lib_opencv SHARED IMPORTED )
-set_target_properties(lib_opencv PROPERTIES IMPORTED_LOCATION ${CMAKE_CURRENT_SOURCE_DIR}/src/main/jniLibs/${ANDROID_ABI}/libopencv_java3.so)
+set(OpenCV_STATIC ON)
+set(OpenCV_DIR ${OPENCV_HOME}/sdk/native/jni)
+find_package (OpenCV REQUIRED)
 
 # Djinni
 include_directories(${DJINNI_HOME}/support-lib/jni)
@@ -17,22 +17,17 @@ include_directories(../../Core/library/src)
 find_library(log-lib log)
 
 # Output
-add_library( # Sets the name of the library.
-             FaceDetector_android
+add_library(FaceDetector_android SHARED
 
-             # Sets the library as a shared library.
-             SHARED
+    # Sources
+    src/main/cpp/FaceDetectorImpl.cpp
+    ../../Core/library/src/FaceDetector.cpp
 
-             # Provides a relative path to your source file(s).
-             src/main/cpp/FaceDetectorImpl.cpp
-             ../../Core/library/src/FaceDetector.cpp
+    # Djinni
+    ${DJINNI_HOME}/support-lib/jni/djinni_main.cpp
+    ${DJINNI_HOME}/support-lib/jni/djinni_support.cpp
+    ${CMAKE_CURRENT_SOURCE_DIR}/build/generated/cpp/jni/JniRectangle.cpp
+    ${CMAKE_CURRENT_SOURCE_DIR}/build/generated/cpp/jni/JniFaceDetectorWrapper.cpp
+)
 
-             # Djinni
-             ${DJINNI_HOME}/support-lib/jni/djinni_main.cpp
-             ${DJINNI_HOME}/support-lib/jni/djinni_support.cpp
-             ${CMAKE_CURRENT_SOURCE_DIR}/build/generated/cpp/jni/JniRectangle.cpp
-             ${CMAKE_CURRENT_SOURCE_DIR}/build/generated/cpp/jni/JniFaceDetectorWrapper.cpp
-
-             )
-
-target_link_libraries(FaceDetector_android lib_opencv ${log-lib})
+target_link_libraries(FaceDetector_android ${OpenCV_LIBS} ${log-lib})
