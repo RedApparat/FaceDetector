@@ -11,6 +11,7 @@ if (project.hasProperty("android")) { // Android libraries
     task javadoc(type: Javadoc) {
         source = android.sourceSets.main.java.srcDirs
         classpath += project.files(android.getBootClasspath().join(File.pathSeparator))
+        failOnError = false
     }
 } else { // Java libraries
     task sourcesJar(type: Jar, dependsOn: classes) {
