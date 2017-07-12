@@ -10,7 +10,6 @@ import java.util.List;
 public class FaceDetector {
 
     static {
-        System.loadLibrary("opencv_java3");
         System.loadLibrary("FaceDetector_android");
     }
 
