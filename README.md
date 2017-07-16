@@ -83,6 +83,10 @@ compile 'io.fotoapparat:facedetector:1.0.0'
 compile 'io.fotoapparat.fotoapparat:library:1.1.0'
 ```
 
+## Contact us
+
+Impressed? We are actually open for side projects. If you want some particular computer vision algorithm (document recognition? photo processing?), drop us a line at fotoapparat.team@gmail.com.
+
 ## License
 
 ```
