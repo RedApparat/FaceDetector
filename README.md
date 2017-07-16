@@ -2,7 +2,7 @@
 
 Want to detect human faces on a camera preview stream in real time? Well, you came to the right place.
 
-FaceDetector is:
+FaceDetector is a library which:
 
 - detects faces
 - works on Android
