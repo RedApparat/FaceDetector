@@ -68,7 +68,7 @@ And you are good to go!
 
 ## Set up
 
-Add dependency to your `build.grade`
+Add dependency to your `build.gradle`
 
 ```groovy
 repositories {
