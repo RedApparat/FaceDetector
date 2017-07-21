@@ -7,16 +7,33 @@ FaceDetector is a library which:
 - detects faces
 - works on Android
 - very simple to use
-- comes with [Fotoapparat](https://github.com/Fotoapparat/Fotoapparat) integration (but you can use it with whatever you like)
+- works greatly with [Fotoapparat](https://github.com/Fotoapparat/Fotoapparat)
+- you can use it with whichever camera library or source you like
 - uses C++ core which can easily be ported to iOS (we have plans for that)
+
+Detecting faces with `Fotoapparat` is as simple as:
+
+```java
+Fotoapparat
+    .with(context)
+    .into(cameraView)
+    .frameProcessor(
+      FaceDetectorProcessor
+        .with(context)
+        .build()
+    )
+    .build()
+```
+
+
+![ ](/screenshot.gif)
+
 
 ## How it works
 
-For simplicity let's assume that you are using Fotoapparat as your camera library. If you don't - plese refer to `FaceDetector` documentation (it is just 1 method).
+### Step One (optional)
 
-### Step One
-
-If you would like to display detected faces right on top of camera, set up your layout as following (otherwise skip this step).
+To display detected faces on top of the camera view, set up your layout as following.
 
 ```xml
 <io.fotoapparat.facedetector.view.CameraOverlayLayout
@@ -48,7 +65,7 @@ Create `FaceDetectorProcessor`:
 FaceDetectorProcessor processor = FaceDetectorProcessor.with(this)
     .listener(faces -> {
         rectanglesView.setRectangles(faces);  // (Optional) Show detected faces on the view.
-        
+
         // ... or do whatever you want with the result
     })
     .build()
@@ -56,12 +73,14 @@ FaceDetectorProcessor processor = FaceDetectorProcessor.with(this)
 
 ### Step Three
 
-Attach it as processor to `Fotoapparat`
+Attach the processor to `Fotoapparat`
 
 ```java
 Fotoapparat.with(this)
-    .frameProcessor(processor)
+    .into(cameraView)
     // the rest of configuration
+    .frameProcessor(processor)
+    .build()
 ```
 
 And you are good to go!
@@ -72,20 +91,22 @@ Add dependency to your `build.gradle`
 
 ```groovy
 repositories {
-    maven { 
-        url  "http://dl.bintray.com/fotoapparat/fotoapparat" 
+    maven {
+        url  "http://dl.bintray.com/fotoapparat/fotoapparat"
     }
 }
 
 compile 'io.fotoapparat:facedetector:1.0.0'
 
 // If you are using Fotoapparat add this one as well
-compile 'io.fotoapparat.fotoapparat:library:1.1.0'
+compile 'io.fotoapparat.fotoapparat:library:1.2.0' // or later version
 ```
 
 ## Contact us
 
-Impressed? We are actually open for side projects. If you want some particular computer vision algorithm (document recognition? photo processing?), drop us a line at fotoapparat.team@gmail.com.
+Impressed? We are actually open for your projects.
+
+If you want some particular computer vision algorithm (document recognition, photo processing or more), drop us a line at fotoapparat.team@gmail.com.
 
 ## License
 
