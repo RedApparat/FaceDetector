@@ -105,7 +105,9 @@ Add dependency to your `build.gradle`
 
 ```groovy
 repositories {
-    maven { url  "http://dl.bintray.com/fotoapparat/fotoapparat" }
+    maven { 
+        url  "http://dl.bintray.com/fotoapparat/fotoapparat" 
+    }
 }
 
 implementation 'io.fotoapparat:facedetector:1.0.0'
