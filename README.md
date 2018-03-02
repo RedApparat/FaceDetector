@@ -61,6 +61,8 @@ To display detected faces on top of the camera view, set up your layout as follo
 
 Create `FaceDetectorProcessor`:
 
+Java:
+
 ```java
 FaceDetectorProcessor processor = FaceDetectorProcessor.with(this)
     .listener(faces -> {
@@ -71,7 +73,7 @@ FaceDetectorProcessor processor = FaceDetectorProcessor.with(this)
     .build()
 ```
 
-or in the Kotlin version:
+or Kotlin:
 
 ```kotlin
 private val processor = FaceDetectorProcessor.with(this)
