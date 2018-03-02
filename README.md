@@ -71,6 +71,18 @@ FaceDetectorProcessor processor = FaceDetectorProcessor.with(this)
     .build()
 ```
 
+or in the Kotlin version:
+
+```kotlin
+private val processor = FaceDetectorProcessor.with(this)
+    .listener({ faces ->
+        rectanglesView.setRectangles(faces)  // (Optional) Show detected faces on the view.
+
+        // ... or do whatever you want with the result
+    })
+    .build()
+```
+
 ### Step Three
 
 Attach the processor to `Fotoapparat`
